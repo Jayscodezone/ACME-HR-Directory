@@ -114,4 +114,3 @@ app.use((err, req, res, next) => {
 
 // Initialize the app
 init();
-}
