@@ -6,7 +6,7 @@ app.use (express.json());
 //db client 
 
 // Create tables 
-const client = new pg.Client('postgres://localhost:5432/acme_hr_directory');
+const client = new pg.Client('postgres://localhost:5432/acme_hr_db');
 
  // Initialize database and start server
 const init = async () => {
@@ -34,8 +34,10 @@ const init = async () => {
 
       INSERT INTO employees(name, department_id) VALUES
         ('Donna', (SELECT id FROM departments WHERE name = 'Accounting')),
-        ('Alistair', (SELECT id FROM departments WHERE name = 'Creative'));
-    `;
+        ('Alistair', (SELECT id FROM departments WHERE name = 'Creative')),
+        ('Bruno', (SELECT id FROM departments WHERE name = 'Information Technology'))
+        
+    `
 
     await client.query(SQL);
     console.log('Database initialized and seeded.');
